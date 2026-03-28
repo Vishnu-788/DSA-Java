@@ -13,24 +13,17 @@ Return the maximum profit you can achieve from this transaction. If you cannot a
 
 public class BestTimeToBuyAndSellStocks {
     public int maxProfit(int[] prices) {
-        int buy=0;
-        int sell=0;
+        int min = prices[0];
+        int profit = 0;
 
         for(int i=0; i<prices.length; i++) {
-            if(buy>prices[i]) {
-                buy=prices[i];
+            if(min > prices[i]) {
+                min = prices[i];
             }
 
-            if(sell<prices[i]) {
-                sell=prices[i];
-            }
+            profit = Math.max(profit, prices[i] - min);
         }
-
-        if(buy-sell > 0) {
-            return buy-sell;
-        }
-       
-        return 0;
+        return profit;
     }
     public static void main(String[] args) {
         int[] prices = new int[]{10, 2, 3, 4, 6, 8};
